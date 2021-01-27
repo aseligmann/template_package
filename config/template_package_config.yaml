@@ -1,0 +1,17 @@
+################################################################################
+#                                                                              #
+#               CONFIGURATION PARAMETERS FOR TEMPLATE_PACKAGE.                 #
+#                                                                              #
+################################################################################
+
+#-------------------------------------------------------------------------------
+# PARAMETER CHAPTER NAME
+#   Brief description of what these parameters are for
+#-------------------------------------------------------------------------------
+SomeParams:
+  some_scalar_parameter:              10.0
+  some_boolean_parameter:             true
+  some_string_parameter:              "some_string"
+  some_enum_parameter:                someEnum
+  some_list_parameter:                [1.0, 2.0, 3.0]
+  some_evaluated_parameter:           rad(5.0*pi/180)

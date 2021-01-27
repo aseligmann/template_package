@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>template_package</name>
+  <version>0.0.0</version>
+  <description>The template_package package</description>
+
+  <maintainer email="albertsseligmann@gmail.com">Albert Seligmann</maintainer>
+
+  <license>TODO</license>
+
+  <!-- buildtool_depend: dependencies of the build process -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <!-- build_depend: dependencies only used in source files -->
+  <build_depend>boost</build_depend>
+  <!-- depend: build, export, and execution dependency -->
+  <depend>roscpp</depend>
+  <depend>geometry_msgs</depend>
+  <depend>diagnostic_msgs</depend>
+  <depend>rviz</depend>
+  <depend>robot_state_publisher</depend>
+
+</package>

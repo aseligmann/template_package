@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Arguments -->
+  <arg name="some_placeholder" default="value" />
+  <arg name="some_path" default="$(find some_package)/some/path.file"/>
+
+  <!-- ROS URDF description of the ZED -->
+  <group if="$(arg some_boolean)">
+    <node name="$(arg some_placeholder)_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen" required="true">
+      <remap from="robot_description" to="$(arg node_name)/$(arg some_placeholder)_description" />
+    </node>
+  </group>
+
+  <node name="$(arg node_name)" pkg="some_package" type="some_package_node" output="screen" required="true">
+    <rosparam file="$(find some_package)/params/some_placeholder.yaml" command="load" />
+
+    <!-- Parameters -->
+    <param name="some_namespace/some_parameter" value="$(arg some_placeholder)" />
+  </node>
+</launch>

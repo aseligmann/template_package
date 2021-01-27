@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+  <!-- Arguments -->
+  <arg name="some_placeholder" default="value" />
+  <arg name="some_include" default="$(find template_package)/launch/include/$(arg some_include).launch.xml" />
+  <arg name="some_parameter_file" default="$(find template_package)/config/template_package_config.yaml" />
+
+  <!-- ROS Gazebo  -->
+  <env name="GAZEBO_MODEL_PATH" value="${GAZEBO_MODEL_PATH}:$(find some_package)/models"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_file)" />
+    <arg name="gui" value="$(arg gazebo_gui)" />
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="paused" value="false" />
+    <arg name="verbose" value="false"/>
+  </include>
+
+  <!-- Include some other launch file -->
+  <include file="$(arg some_include)">
+    <arg name="some_placeholder" value="$(arg some_placeholder)" />
+  </include>
+
+  <group ns="$(arg some_namespace)">
+    <!-- Some description -->
+    <include file="$(find some_include)/launch/some_launch.launch">
+      <arg name="some_placeholder" value="$(arg some_placeholder)" />
+    </include>
+  </group>
+
+  <!-- Some node -->
+  <node name="template_package_node" pkg="template_package" type="template_package_node" output="screen">
+    <remap from="some_topic" to="$(arg some_destination_topic)"/>
+    <rosparam command="load" file="$(arg some_parameter_file)" />
+  </node>
+
+  <!-- Launch RViz display -->
+  <node name="template_package_ui" pkg="rviz" type="rviz" args="-d $(find template_package)/config/rviz/template_package.rviz" output="screen" />
+
+  </node>
+</launch>
